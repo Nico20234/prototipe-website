@@ -1,0 +1,13 @@
+El sitio web debe incluir un formulario de contacto, con al menos 5
+campos que incluya (un checkbox o radiobutton), un select y una
+imagen, con validación realizada mediante JavaScript para que los
+campos sean obligatorios.
+puntos 15
+
+Utilizar al menos una animación, transformación o una transición. 10
+
+Se considerará la presentación general del proyecto, la
+legibilidad del mismo, la navegación sin llegar a puntos de no
+retorno, la optimización de imagenes para la web y el uso de
+favicon
+10 puntos
