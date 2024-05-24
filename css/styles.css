@@ -185,6 +185,14 @@ nav ul li a:hover {
     background-color: #6a1b9a; /* Color de fondo violeta al hacer hover */
     color: #fff; /* Color del texto blanco al hacer hover para contraste */
 }
+.container.log {
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
 /* Sidebar */
 .main-container {
     display: grid;
