@@ -159,6 +159,32 @@ nav a {
 .nav-buttons a:hover {
     background-color: #6a1b9a; /* Violeta */
 }
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 5px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #ffffff; /* Color del texto por defecto */
+    font-size: 18px;
+    border-radius: 5px;
+    padding: 6px 10px;/* Añadir padding para que el fondo se vea bien */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave para el color y el fondo */
+}
+
+nav ul li a i {
+    margin-right: 5px;
+}
+nav ul li a:hover {
+    background-color: #6a1b9a; /* Color de fondo violeta al hacer hover */
+    color: #fff; /* Color del texto blanco al hacer hover para contraste */
+}
 /* Sidebar */
 .main-container {
     display: grid;
@@ -265,7 +291,7 @@ section {
 }
 
 .category {
-    background-color:#180922; /* Violeta más oscuro */
+    background-color:#180922; 
     color: white;
     padding: 20px;
     margin: 10px;
@@ -449,7 +475,7 @@ footer {
 
   .social-media a {
     text-decoration: none;
-    color: #333; /* Color de los íconos */
+    color: #fffcfc; /* Color de los íconos */
     font-size: 24px; /* Tamaño de los íconos */
   }
 
