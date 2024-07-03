@@ -83,7 +83,7 @@ def agregar_usuario():
         return jsonify({"mensaje": "Usuario registrado correctamente."}), 201
     else:
         return jsonify({"mensaje": "Error al registrar el usuario."}), 500
-'''
+
 def modificar_usuario(self, email, nuevo_email, nueva_password):
     sql = "UPDATE usuario SET email = %s, password = %s WHERE email = %s"
     valores = (nuevo_email, nueva_password, email)
@@ -115,7 +115,7 @@ def eliminar_usuario(email):
     else:
         return jsonify({"mensaje": "Usuario no encontrado"}), 404
     
-'''
+
 #--------------------------------------------------------------------
 if __name__ == "__main__":
     app.run(debug=True)
