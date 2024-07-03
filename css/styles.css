@@ -13,8 +13,8 @@
     grid-area: nav;
 }
 .footer{
-     grid-area: footer;
- }
+    grid-area: footer;
+}
 
 .sidebar{
         grid-area: sidebar;
@@ -60,18 +60,18 @@
 }
 @keyframes slide-down {
     0% {
-      transform: translateY(-100%);
-      opacity: 0;
+    transform: translateY(-100%);
+    opacity: 0;
     }
     100% {
-      transform: translateY(0);
-      opacity: 1;
+    transform: translateY(0);
+    opacity: 1;
     }
-  }
-  
-  .header h1 {
+}
+
+.header h1 {
     animation: slide-down 1s ease;
-  }
+}
 
 body {
     font-family: Arial, sans-serif;
@@ -192,13 +192,13 @@ nav ul li a:hover {
     border-radius: 8px;
     padding: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+}
 /* Sidebar */
 .main-container {
     display: grid;
     place-items: left; /* Esto centrará el sidebar2 en ambas direcciones */
     padding: 10px;
-  }
+}
 .sidebar {
     /* background: #f9f9f9; */
     /* padding: 15px; */
@@ -206,14 +206,14 @@ nav ul li a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  
-  .ticket-image {
+}
+
+.ticket-image {
     max-width: 100%;
     height: auto;
     display: block;
     /* border: 1px solid #ddd; */
-  }
+}
 main {
     padding: 20px;
 }
@@ -525,7 +525,7 @@ footer {
 
 .footer-section ul li a:hover {
     color: #ff6600; /* Cambia el color al pasar el cursor sobre el enlace */
-  }
+}
 
 .copyright {
     margin-top: 20px;
@@ -553,14 +553,14 @@ footer {
     gap: 10px; /* Espacio entre los íconos */
     justify-content: center; /* Centrar los íconos */
     padding: 10px;
-  }
+}
 
-  .social-media a {
+.social-media a {
     text-decoration: none;
     color: #fffcfc; /* Color de los íconos */
     font-size: 24px; /* Tamaño de los íconos */
-  }
+}
 
-  .social-media a:hover {
+.social-media a:hover {
     color: #0073e6; /* Color al pasar el cursor */
-  }
+}
