@@ -45,7 +45,7 @@ def register_user():
                 host='localhost',  # Reemplazado con 'localhost'
                 database='registro',  # Reemplazado con 'registro'
                 user='root',  # Reemplazado con 'root'
-                password='Titanio0812'  # Reemplazado con 'Titanio0812'
+                password=''  # Reemplazado con 'Titanio0812'
             )
             user_id = db.agregar_usuario(email, password)
             db.cerrar()
