@@ -75,39 +75,42 @@
     <script src="script.js"></script>
     <script>
         const URL = "http://127.0.0.1:5000/";
-
-async function register() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirm-password').value;
-
-    if (password !== confirmPassword) {
-        alert('Las contraseñas no coinciden');
-        return;
-    }
-
-    try {
-        const response = await fetch(URL + 'usuarios', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-        });
-
-        if (response.ok) {
-            alert('Registro exitoso');
-            // Redirigir a la página de inicio de sesión
-            window.location.href = 'login.html';
-        } else {
-            const result = await response.json();
-            alert('Error al registrarse: ' + result.message);  // Asegúrate de usar 'message' o la clave correcta del JSON devuelto
+    
+        async function register() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+    
+            if (password !== confirmPassword) {
+                alert('Las contraseñas no coinciden');
+                return;
+            }
+    
+            try {
+                const response = await fetch(URL + 'usuarios', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
+    
+                if (response.ok) {
+                    const result = await response.json();
+                    const registerID = result.registerID; // Obtener el registerID del resultado
+                    alert('Registro exitoso. Tu ID de registro es: ' + registerID);
+                    // Redirigir a la página de inicio de sesión
+                    window.location.href = 'login.html';
+                } else {
+                    const result = await response.json();
+                    alert('Error al registrarse: ' + result.message);  // Asegúrate de usar 'message' o la clave correcta del JSON devuelto
+                }
+            } catch (error) {
+                console.error('Error en la solicitud:', error);
+                alert('Ocurrió un error al procesar la solicitud. Por favor, inténtalo nuevamente más tarde.');
+            }
         }
-    } catch (error) {
-        console.error('Error en la solicitud:', error);
-        alert('Ocurrió un error al procesar la solicitud. Por favor, inténtalo nuevamente más tarde.');
-    }
-}
     </script>
+    
 </body>
 </html>

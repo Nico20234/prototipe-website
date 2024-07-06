@@ -77,5 +77,75 @@
         </div>
     </footer>
     <script src="script.js"></script>
+    <script>
+        const API_URL = 'http://localhost:5000/usuarios';
+    
+        async function obtenerClientes() {
+            try {
+                const response = await fetch(API_URL);
+                const clientes = await response.json();
+                const tbody = document.querySelector('#clientes-table tbody');
+                tbody.innerHTML = ''; // Limpiar la tabla antes de insertar nuevos datos
+                clientes.forEach(cliente => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${cliente[0]}</td>
+                        <td>${cliente[1]}</td>
+                        <td>
+                            <button onclick="eliminarCliente(${cliente[0]})">Eliminar</button>
+                            <button onclick="modificarCliente(${cliente[0]})">Modificar</button>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error al obtener los clientes:', error);
+            }
+        }
+    
+        async function eliminarCliente(registerID) {
+            try {
+                const response = await fetch(`${API_URL}/${registerID}`, {
+                    method: 'DELETE'
+                });
+                if (response.ok) {
+                    alert('Cliente eliminado exitosamente');
+                    obtenerClientes(); // Actualizar la lista de clientes
+                } else {
+                    alert('Error al eliminar el cliente');
+                }
+            } catch (error) {
+                console.error('Error al eliminar el cliente:', error);
+            }
+        }
+    
+        async function modificarCliente(registerID) {
+            const email = prompt('Ingrese el nuevo email:');
+            const password = prompt('Ingrese la nueva contraseña:');
+            if (!email || !password) {
+                alert('Datos incompletos');
+                return;
+            }
+            try {
+                const response = await fetch(`${API_URL}/${registerID}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                if (response.ok) {
+                    alert('Cliente modificado exitosamente');
+                    obtenerClientes(); // Actualizar la lista de clientes
+                } else {
+                    alert('Error al modificar el cliente');
+                }
+            } catch (error) {
+                console.error('Error al modificar el cliente:', error);
+            }
+        }
+    
+        document.addEventListener('DOMContentLoaded', obtenerClientes);
+    </script>
 </body>
 </html>

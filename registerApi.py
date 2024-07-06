@@ -20,6 +20,22 @@ class Database:
         self.conn.commit()
         return self.cursor.lastrowid
 
+    def eliminar_usuario(self, user_id):
+        sql = "DELETE FROM usuarios WHERE id = %s"
+        self.cursor.execute(sql, (user_id,))
+        self.conn.commit()
+
+    def modificar_usuario(self, user_id, email, password):
+        sql = "UPDATE usuarios SET email = %s, password = %s WHERE id = %s"
+        valores = (email, password, user_id)
+        self.cursor.execute(sql, valores)
+        self.conn.commit()
+
+    def obtener_usuarios(self):
+        sql = "SELECT registerID, email FROM usuarios"
+        self.cursor.execute(sql)
+        return self.cursor.fetchall()
+
     def cerrar(self):
         self.cursor.close()
         self.conn.close()
@@ -47,14 +63,79 @@ def register_user():
                 user='root',  # Reemplazado con 'root'
                 password=''  # Reemplazado con 'Titanio0812'
             )
-            user_id = db.agregar_usuario(email, password)
+            registerID = db.agregar_usuario(email, password)
             db.cerrar()
-            return jsonify({'message': 'Usuario registrado exitosamente', 'user_id': user_id}), 201
+            return jsonify({'message': 'Usuario registrado exitosamente', 'registerID': registerID}), 201
         except Error as e:
             print(f"Error: {e}")
             return jsonify({'message': 'Error al registrar el usuario'}), 500
     else:
         return jsonify({'message': 'Solicitud no válida, se esperaba JSON'}), 400
+    
+@app.route('/usuarios/<int:registerID>', methods=['DELETE'])
+def delete_user(registerID):
+    try:
+        db = Database(
+            host='localhost',
+            database='registro',
+            user='root',
+            password=''
+        )
+        sql = "DELETE FROM usuarios WHERE registerID = %s"
+        valores = (registerID,)
+        db.cursor.execute(sql, valores)
+        db.conn.commit()
+        db.cerrar()
+        return jsonify({'message': 'Usuario eliminado exitosamente'}), 200
+    except Error as e:
+        print(f"Error: {e}")
+        return jsonify({'message': 'Error al eliminar el usuario'}), 500
+
+@app.route('/usuarios/<int:registerID>', methods=['PUT'])
+def update_user(registerID):
+    if request.is_json:
+        data = request.get_json()
+        email = data.get('email')
+        password = data.get('password')
+
+        if not email or not password:
+            return jsonify({'message': 'Datos incompletos'}), 400
+
+        try:
+            db = Database(
+                host='localhost',
+                database='registro',
+                user='root',
+                password=''
+            )
+            sql = "UPDATE usuarios SET email = %s, password = %s WHERE registerID = %s"
+            valores = (email, password, registerID)
+            db.cursor.execute(sql, valores)
+            db.conn.commit()
+            db.cerrar()
+            return jsonify({'message': 'Usuario modificado exitosamente'}), 200
+        except Error as e:
+            print(f"Error: {e}")
+            return jsonify({'message': 'Error al modificar el usuario'}), 500
+    else:
+        return jsonify({'message': 'Solicitud no válida, se esperaba JSON'}), 400
+
+@app.route('/usuarios', methods=['GET'])
+def get_users():
+    try:
+        db = Database(
+            host='localhost',  # Reemplazado con 'localhost'
+            database='registro',  # Reemplazado con 'registro'
+            user='root',  # Reemplazado con 'root'
+            password=''  # Reemplazado con ''
+        )
+        usuarios = db.obtener_usuarios()
+        db.cerrar()
+        return jsonify(usuarios), 200
+    except Error as e:
+        print(f"Error: {e}")
+        return jsonify({'message': 'Error al obtener los usuarios'}), 500
+
 
 # Ejecutar la aplicación en el puerto 5000
 if __name__ == '__main__':
