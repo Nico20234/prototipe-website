@@ -6,10 +6,10 @@ from mysql.connector import Error
 class Database:
     def __init__(self, host, database, user, password):
         self.conn = mysql.connector.connect(
-            host=host,
-            database=database,
-            user=user,
-            password=password
+            host=codoacodojrossi.mysql.pythonanywhere-services.com,
+            database=codoacodojrossi$miapp,
+            user=codoacodojrossi,
+            password=fcy5iZ2CqCOiB6N
         )
         self.cursor = self.conn.cursor()
 
