@@ -31,7 +31,7 @@
         <main>
             <div class="container.table"></div>
             <section>
-                <h2>Clientes</h2>
+               
                 <table id="clientes-table">
                     <thead>
                         <tr>
@@ -121,31 +121,40 @@
             }
         }
     
-        async function modificarCliente(registerID) {
-            const email = prompt('Ingrese el nuevo email:');
-            const password = prompt('Ingrese la nueva contraseña:');
-            if (!email || !password) {
-                alert('Datos incompletos');
-                return;
-            }
-            try {
-                const response = await fetch(`${API_URL}/${registerID}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email, password })
-                });
-                if (response.ok) {
-                    alert('Cliente modificado exitosamente');
-                    obtenerClientes(); // Actualizar la lista de clientes
-                } else {
-                    alert('Error al modificar el cliente');
-                }
-            } catch (error) {
-                console.error('Error al modificar el cliente:', error);
-            }
+        async function modificarCliente(registerID, email) {
+    const newEmail = prompt('Ingrese el nuevo email:', email);
+    if (!newEmail) return;
+
+    const newPassword = prompt('Ingrese la nueva contraseña:');
+    if (!newPassword) return;
+
+    const confirmPassword = prompt('Confirme la nueva contraseña:');
+    if (newPassword !== confirmPassword) {
+        alert('Las contraseñas no coinciden');
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_URL}/${registerID}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: newEmail, password: newPassword })
+        });
+
+        if (response.ok) {
+            alert('Cliente modificado exitosamente');
+            obtenerClientes(); // Actualizar la lista de clientes
+        } else {
+            const result = await response.json();
+            alert('Error al modificar el cliente: ' + result.message);
         }
+    } catch (error) {
+        console.error('Error al modificar el cliente:', error);
+        alert('Ocurrió un error al procesar la solicitud. Por favor, inténtalo nuevamente más tarde.');
+    }
+}
     
         document.addEventListener('DOMContentLoaded', obtenerClientes);
     </script>
