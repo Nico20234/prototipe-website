@@ -6,10 +6,10 @@ from mysql.connector import Error
 class Database:
     def __init__(self, host, database, user, password):
         self.conn = mysql.connector.connect(
-            host=codoacodojrossi.mysql.pythonanywhere-services.com,
-            database=codoacodojrossi$miapp,
-            user=codoacodojrossi,
-            password=fcy5iZ2CqCOiB6N
+            host='codoacodojrossi.mysql.pythonanywhere-services.com',
+            database='codoacodojrossi$miapp',
+            user='codoacodojrossi',
+            password='fcy5iZ2CqCOiB6N'
         )
         self.cursor = self.conn.cursor()
 
@@ -76,10 +76,10 @@ def register_user():
 def delete_user(registerID):
     try:
         db = Database(
-            host='localhost',
-            database='registro',
-            user='root',
-            password=''
+            host='codoacodojrossi.mysql.pythonanywhere-services.com',
+            database='codoacodojrossi$miapp',
+            user='codoacodojrossi',
+            password='fcy5iZ2CqCOiB6N'
         )
         sql = "DELETE FROM usuarios WHERE registerID = %s"
         valores = (registerID,)
@@ -103,10 +103,10 @@ def update_user(registerID):
 
         try:
             db = Database(
-                host='localhost',
-                database='registro',
-                user='root',
-                password=''
+                host='codoacodojrossi.mysql.pythonanywhere-services.com',
+                database='codoacodojrossi$miapp',
+                user='codoacodojrossi',
+                password='fcy5iZ2CqCOiB6N''
             )
             sql = "UPDATE usuarios SET email = %s, password = %s WHERE registerID = %s"
             valores = (email, password, registerID)
@@ -124,10 +124,10 @@ def update_user(registerID):
 def get_users():
     try:
         db = Database(
-            host='localhost',  # Reemplazado con 'localhost'
-            database='registro',  # Reemplazado con 'registro'
-            user='root',  # Reemplazado con 'root'
-            password=''  # Reemplazado con ''
+            host='codoacodojrossi.mysql.pythonanywhere-services.com',
+            database='codoacodojrossi$miapp',
+            user='codoacodojrossi',
+            password='fcy5iZ2CqCOiB6N'
         )
         usuarios = db.obtener_usuarios()
         db.cerrar()
