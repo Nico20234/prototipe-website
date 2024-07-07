@@ -538,6 +538,7 @@ footer {
     color: white;
     text-align: center;
     padding: 8px 0;
+    z-index: 1000; /* Asegúrate de que el footer esté por encima del contenido */
 }
 
 .footer-container {
@@ -624,4 +625,9 @@ footer {
 
 .social-media a:hover {
     color: #0073e6; /* Color al pasar el cursor */
+}
+
+/* Main Content */
+main {
+    padding-bottom: 60px; /* Asegúrate de que el padding sea al menos tan alto como el footer */
 }
