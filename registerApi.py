@@ -58,10 +58,10 @@ def register_user():
 
         try:
             db = Database(
-                host='localhost',  # Reemplazado con 'localhost'
-                database='registro',  # Reemplazado con 'registro'
-                user='root',  # Reemplazado con 'root'
-                password=''  # Reemplazado con 'Titanio0812'
+                host='codoacodojrossi.mysql.pythonanywhere-services.com',
+                database='codoacodojrossi$miapp',
+                user='codoacodojrossi',
+                password='fcy5iZ2CqCOiB6N'
             )
             registerID = db.agregar_usuario(email, password)
             db.cerrar()
