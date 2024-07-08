@@ -106,7 +106,7 @@ def update_user(registerID):
                 host='codoacodojrossi.mysql.pythonanywhere-services.com',
                 database='codoacodojrossi$miapp',
                 user='codoacodojrossi',
-                password='fcy5iZ2CqCOiB6N''
+                password='fcy5iZ2CqCOiB6N'
             )
             sql = "UPDATE usuarios SET email = %s, password = %s WHERE registerID = %s"
             valores = (email, password, registerID)
