@@ -97,10 +97,10 @@
                 const result = await response.json(); // Esperar a que el JSON se obtenga
     
                 if (response.ok) {
-                    const registerID = result.registerID; // Obtener el registerID del resultado
-                    alert('Registro exitoso. Tu ID de registro es: ' + registerID);
+                    // const registerID = result.registerID; // Obtener el registerID del resultado
+                    alert('Registro exitoso.');
                     // Redirigir a la página de inicio de sesión
-                    window.location.href = 'login.html';
+                    window.location.href = 'register.html';
                 } else {
                     alert('Error al registrarse: ' + result.message);  // Asegúrate de usar 'message' o la clave correcta del JSON devuelto
                 }
